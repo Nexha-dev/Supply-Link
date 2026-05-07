@@ -17,7 +17,7 @@ Thanks for your interest in contributing. This guide covers the development work
 ```bash
 git clone https://github.com/Maki-Zeninn/Supply-Link.git
 cd Supply-Link
-npm install          # installs root devDependencies (husky, lint-staged, semantic-release)
+npm install          # installs root devDependencies (husky, lint-staged)
 cd frontend
 npm install          # installs frontend dependencies
 ```
@@ -87,7 +87,7 @@ npm run lint:ci       # zero warnings (used in CI)
 
 ## Commit Message Convention
 
-This project follows the [Conventional Commits](https://www.conventionalcommits.org/) specification. Commit messages drive automated versioning and changelog generation via `semantic-release`.
+This project follows the [Conventional Commits](https://www.conventionalcommits.org/) specification. Use them to keep commit history consistent and machine-readable.
 
 ### Format
 
@@ -125,31 +125,17 @@ feat!: rename add_tracking_event signature  # breaking change
 
 ---
 
-## Releases
+## Verification
 
-Releases are fully automated. On every push to `main`, `semantic-release`:
+Before opening or merging changes, run the checks you touched locally:
 
-1. Analyzes commits since the last release
-2. Determines the next version (major/minor/patch)
-3. Updates `frontend/package.json` version
-4. Generates / updates `CHANGELOG.md`
-5. Creates a GitHub Release with release notes
-6. Commits the version bump back to `main`
+| Check      | Command                |
+| ---------- | ---------------------- |
+| Prettier   | `npm run format:check` |
+| ESLint     | `npm run lint:ci`      |
+| TypeScript | `npx tsc --noEmit`     |
 
-You do not need to manually bump versions or write changelogs.
-
----
-
-## CI Checks
-
-Every PR must pass:
-
-| Check      | Command                    |
-| ---------- | -------------------------- |
-| Prettier   | `npm run format:check`     |
-| ESLint     | `npm run lint:ci`          |
-| TypeScript | `tsc --noEmit`             |
-| CodeQL     | Automated (GitHub Actions) |
+For smart-contract changes, also run the relevant Cargo commands locally, such as `cargo test` or `cargo clippy`.
 
 ---
 
@@ -160,6 +146,7 @@ feature/<issue-number>-short-description
 fix/<issue-number>-short-description
 chore/<issue-number>-short-description
 ```
+
 Thanks for your interest in contributing. Supply-Link is an open-source project and we welcome contributions across smart contracts, frontend, docs, design, and testing.
 
 ---
@@ -199,25 +186,25 @@ Or open the Extensions panel (`Ctrl+Shift+X`), search for `@recommended`, and cl
 
 ### What each extension does
 
-| Extension | Purpose |
-|---|---|
-| `dbaeumer.vscode-eslint` | Runs ESLint inline and surfaces lint errors as you type |
-| `esbenp.prettier-vscode` | Formats files on save using the project's Prettier config |
+| Extension                   | Purpose                                                                |
+| --------------------------- | ---------------------------------------------------------------------- |
+| `dbaeumer.vscode-eslint`    | Runs ESLint inline and surfaces lint errors as you type                |
+| `esbenp.prettier-vscode`    | Formats files on save using the project's Prettier config              |
 | `bradlc.vscode-tailwindcss` | Tailwind CSS IntelliSense — class name autocomplete and hover previews |
-| `rust-lang.rust-analyzer` | Rust language server — type hints, go-to-definition, inline errors |
-| `tamasfe.even-better-toml` | Syntax highlighting and validation for `Cargo.toml` |
-| `eamodio.gitlens` | Enhanced Git history, blame annotations, and branch visualisation |
+| `rust-lang.rust-analyzer`   | Rust language server — type hints, go-to-definition, inline errors     |
+| `tamasfe.even-better-toml`  | Syntax highlighting and validation for `Cargo.toml`                    |
+| `eamodio.gitlens`           | Enhanced Git history, blame annotations, and branch visualisation      |
 
 ### Workspace settings (`.vscode/settings.json`)
 
-| Setting | Value | Why |
-|---|---|---|
-| `editor.formatOnSave` | `true` | Automatically formats every file on save so you never need to run `npm run format` manually |
-| `editor.defaultFormatter` | `esbenp.prettier-vscode` | Ensures Prettier (not the built-in formatter) is used for all supported file types |
-| `editor.codeActionsOnSave` → `source.fixAll.eslint` | `"explicit"` | Auto-fixes ESLint violations on save (only when you explicitly save, not on auto-save) |
-| `tailwindCSS.includeLanguages` | `typescript`/`typescriptreact` → `html` | Enables Tailwind IntelliSense inside `.ts` and `.tsx` files |
-| `rust-analyzer.checkOnSave.command` | `clippy` | Runs `cargo clippy` instead of `cargo check` on save for stricter Rust linting |
-| `rust-analyzer.cargo.allFeatures` | `true` | Analyses the smart contract with all Cargo features enabled so no code paths are hidden |
+| Setting                                             | Value                                   | Why                                                                                         |
+| --------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `editor.formatOnSave`                               | `true`                                  | Automatically formats every file on save so you never need to run `npm run format` manually |
+| `editor.defaultFormatter`                           | `esbenp.prettier-vscode`                | Ensures Prettier (not the built-in formatter) is used for all supported file types          |
+| `editor.codeActionsOnSave` → `source.fixAll.eslint` | `"explicit"`                            | Auto-fixes ESLint violations on save (only when you explicitly save, not on auto-save)      |
+| `tailwindCSS.includeLanguages`                      | `typescript`/`typescriptreact` → `html` | Enables Tailwind IntelliSense inside `.ts` and `.tsx` files                                 |
+| `rust-analyzer.checkOnSave.command`                 | `clippy`                                | Runs `cargo clippy` instead of `cargo check` on save for stricter Rust linting              |
+| `rust-analyzer.cargo.allFeatures`                   | `true`                                  | Analyses the smart contract with all Cargo features enabled so no code paths are hidden     |
 
 ---
 
@@ -231,13 +218,13 @@ This project follows the [Contributor Covenant Code of Conduct](https://www.cont
 
 Install these tools before working on the project:
 
-| Tool | Version | Install |
-|---|---|---|
-| Node.js | 20+ | [nodejs.org](https://nodejs.org) |
-| Rust | stable (1.78+) | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh` |
-| wasm32 target | — | `rustup target add wasm32-unknown-unknown` |
-| Stellar CLI | latest | [Install guide](https://developers.stellar.org/docs/tools/developer-tools/cli/stellar-cli) |
-| Freighter Wallet | latest | [freighter.app](https://freighter.app) browser extension |
+| Tool             | Version        | Install                                                                                    |
+| ---------------- | -------------- | ------------------------------------------------------------------------------------------ |
+| Node.js          | 20+            | [nodejs.org](https://nodejs.org)                                                           |
+| Rust             | stable (1.78+) | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh`                          |
+| wasm32 target    | —              | `rustup target add wasm32-unknown-unknown`                                                 |
+| Stellar CLI      | latest         | [Install guide](https://developers.stellar.org/docs/tools/developer-tools/cli/stellar-cli) |
+| Freighter Wallet | latest         | [freighter.app](https://freighter.app) browser extension                                   |
 
 Verify your setup:
 
@@ -331,16 +318,17 @@ stellar keys fund alice --network testnet   # uses Friendbot
 
 ## Branching Strategy
 
-| Branch | Purpose |
-|---|---|
-| `main` | Production-ready code. Direct pushes are blocked. |
-| `feat/<short-description>` | New features, e.g. `feat/qr-scanner` |
-| `fix/<short-description>` | Bug fixes, e.g. `fix/transfer-auth` |
-| `docs/<short-description>` | Documentation only, e.g. `docs/contract-api` |
-| `chore/<short-description>` | Tooling, deps, CI, e.g. `chore/upgrade-sdk` |
-| `test/<short-description>` | Tests only, e.g. `test/prop-event-count` |
+| Branch                      | Purpose                                           |
+| --------------------------- | ------------------------------------------------- |
+| `main`                      | Production-ready code. Direct pushes are blocked. |
+| `feat/<short-description>`  | New features, e.g. `feat/qr-scanner`              |
+| `fix/<short-description>`   | Bug fixes, e.g. `fix/transfer-auth`               |
+| `docs/<short-description>`  | Documentation only, e.g. `docs/contract-api`      |
+| `chore/<short-description>` | Tooling, deps, CI, e.g. `chore/upgrade-sdk`       |
+| `test/<short-description>`  | Tests only, e.g. `test/prop-event-count`          |
 
 Rules:
+
 - Branch off `main` for every piece of work.
 - Keep branches short-lived — open a PR as soon as you have something reviewable.
 - Delete your branch after it is merged.
@@ -361,16 +349,16 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/en/
 
 **Types:**
 
-| Type | When to use |
-|---|---|
-| `feat` | A new feature |
-| `fix` | A bug fix |
-| `docs` | Documentation changes only |
-| `style` | Formatting, whitespace (no logic change) |
+| Type       | When to use                                     |
+| ---------- | ----------------------------------------------- |
+| `feat`     | A new feature                                   |
+| `fix`      | A bug fix                                       |
+| `docs`     | Documentation changes only                      |
+| `style`    | Formatting, whitespace (no logic change)        |
 | `refactor` | Code change that is neither a fix nor a feature |
-| `test` | Adding or updating tests |
-| `chore` | Build process, dependency updates, CI |
-| `perf` | Performance improvement |
+| `test`     | Adding or updating tests                        |
+| `chore`    | Build process, dependency updates, CI           |
+| `perf`     | Performance improvement                         |
 
 **Scopes** (optional but encouraged): `contract`, `frontend`, `wallet`, `tracking`, `products`, `ci`, `deps`.
 
@@ -400,6 +388,7 @@ BREAKING CHANGE: TrackingEvent.event_type is now TrackingEvent.kind
 2. **Make your changes** following the coding standards below.
 3. **Write or update tests** for any logic you add or change.
 4. **Run the full test suite** locally before pushing:
+
    ```bash
    # Smart contract
    cd smart-contract && cargo test
@@ -407,9 +396,10 @@ BREAKING CHANGE: TrackingEvent.event_type is now TrackingEvent.kind
    # Frontend
    cd frontend && npm test
    ```
+
 5. **Open a PR** against `main` with:
    - A clear title following the Conventional Commits format.
-   - A description explaining *what* changed and *why*.
+   - A description explaining _what_ changed and _why_.
    - Screenshots or a short demo for UI changes.
    - A reference to the related issue, e.g. `Closes #42`.
 6. **Address review feedback** — push additional commits to the same branch; do not force-push after a review has started.
@@ -420,6 +410,7 @@ BREAKING CHANGE: TrackingEvent.event_type is now TrackingEvent.kind
 ## What Reviewers Look For
 
 **Smart contract (Rust / Soroban)**
+
 - All public functions have `///` doc comments covering parameters, return values, panics, auth requirements, and emitted events.
 - `owner.require_auth()` (or equivalent) is called before any state mutation that requires authorization.
 - No unbounded loops over user-supplied data.
@@ -427,12 +418,14 @@ BREAKING CHANGE: TrackingEvent.event_type is now TrackingEvent.kind
 - `cargo clippy -- -D warnings` passes with no errors.
 
 **Frontend (TypeScript / Next.js)**
+
 - No `any` types without a comment explaining why.
 - Wallet interactions go through the existing `lib/stellar/` abstractions.
 - New UI components live in `components/ui/` (primitives) or the relevant feature folder.
 - `npm run lint` passes with no errors.
 
 **General**
+
 - Commits follow the Conventional Commits convention.
 - No secrets, private keys, or `.env` files committed.
 - Documentation is updated alongside code changes.

@@ -15,17 +15,17 @@ All Supply-Link API routes follow a **URL path versioning** scheme:
 
 ## Additive vs Breaking Changes
 
-| Change type | Classification | Action required |
-|---|---|---|
-| Add optional request field | Additive ✅ | None |
-| Add optional response field | Additive ✅ | None |
-| Add new endpoint | Additive ✅ | None |
-| Remove request field | **Breaking** ❌ | Bump version |
-| Remove response field | **Breaking** ❌ | Bump version |
-| Change field type | **Breaking** ❌ | Bump version |
-| Change HTTP status code | **Breaking** ❌ | Bump version |
-| Change error code enum value | **Breaking** ❌ | Bump version |
-| Rename endpoint path | **Breaking** ❌ | Bump version + deprecate old |
+| Change type                  | Classification  | Action required              |
+| ---------------------------- | --------------- | ---------------------------- |
+| Add optional request field   | Additive ✅     | None                         |
+| Add optional response field  | Additive ✅     | None                         |
+| Add new endpoint             | Additive ✅     | None                         |
+| Remove request field         | **Breaking** ❌ | Bump version                 |
+| Remove response field        | **Breaking** ❌ | Bump version                 |
+| Change field type            | **Breaking** ❌ | Bump version                 |
+| Change HTTP status code      | **Breaking** ❌ | Bump version                 |
+| Change error code enum value | **Breaking** ❌ | Bump version                 |
+| Rename endpoint path         | **Breaking** ❌ | Bump version + deprecate old |
 
 ## Deprecation Lifecycle
 
@@ -45,10 +45,10 @@ Use the `withDeprecation()` helper in `lib/api/versioning.ts`.
 
 ## Supported Versions
 
-| Version | Status | Sunset date |
-|---|---|---|
-| v1 | ✅ Stable | — |
-| v0 (unversioned) | ⚠️ Deprecated | 2026-08-01 |
+| Version          | Status        | Sunset date |
+| ---------------- | ------------- | ----------- |
+| v1               | ✅ Stable     | —           |
+| v0 (unversioned) | ⚠️ Deprecated | 2026-08-01  |
 
 ## Schema Snapshots
 
@@ -58,8 +58,8 @@ Response shape snapshots for critical endpoints live in:
 frontend/__tests__/snapshots/
 ```
 
-The CI `compat-check` job runs `vitest --reporter=verbose` and fails if any snapshot diverges.
+Run the compatibility suite locally with `npx vitest run __tests__/apiCompat.test.ts --reporter=verbose` and update snapshots intentionally when the contract changes.
 
 ## CI Enforcement
 
-The `compat-check` job in `.github/workflows/frontend.yml` runs the compatibility test suite on every PR targeting `main`. A PR that changes a snapshot without updating it will fail CI.
+Keep the compatibility snapshots current whenever the contract changes. If a snapshot diverges, rerun the compatibility suite locally, review the delta, and only update the snapshot when the API change is intentional.

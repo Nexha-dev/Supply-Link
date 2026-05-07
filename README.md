@@ -5,7 +5,6 @@
 [![Built on Stellar](https://img.shields.io/badge/Built%20on-Stellar-7B2FBE?logo=stellar)](https://stellar.org)
 [![Soroban](https://img.shields.io/badge/Smart%20Contracts-Soroban-blueviolet)](https://soroban.stellar.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Coverage Status](https://codecov.io/gh/your-org/supply-link/branch/main/graph/badge.svg)](https://codecov.io/gh/your-org/supply-link)
 
 ---
 
@@ -13,21 +12,22 @@
 
 **Phase 1 – MVP** (In Progress)
 
-| Component | Status | Notes |
-|---|---|---|
-| Smart Contract | ✅ Complete | All functions implemented with property-based tests |
-| Frontend UI | ✅ Complete | Dashboard, products, tracking, verification pages |
-| Wallet Integration | ✅ Complete | Freighter wallet connect, network detection, balance display |
-| QR Codes | ✅ Complete | Generation and scanning |
-| Contract Deployment | ⚠️ Pending | Using placeholder address for development |
-| Live Integration | ⚠️ Pending | Frontend uses mock data; contract calls stubbed |
-| Production Deployment | ❌ Not Started | Awaiting testnet deployment |
+| Component             | Status         | Notes                                                        |
+| --------------------- | -------------- | ------------------------------------------------------------ |
+| Smart Contract        | ✅ Complete    | All functions implemented with property-based tests          |
+| Frontend UI           | ✅ Complete    | Dashboard, products, tracking, verification pages            |
+| Wallet Integration    | ✅ Complete    | Freighter wallet connect, network detection, balance display |
+| QR Codes              | ✅ Complete    | Generation and scanning                                      |
+| Contract Deployment   | ⚠️ Pending     | Using placeholder address for development                    |
+| Live Integration      | ⚠️ Pending     | Frontend uses mock data; contract calls stubbed              |
+| Production Deployment | ❌ Not Started | Awaiting testnet deployment                                  |
 
 **Next Steps:**
+
 1. Deploy contract to Stellar testnet
 2. Wire frontend to deployed contract
 3. Deploy frontend to Vercel
-4. Add CI/CD pipeline
+4. Publish a manual release checklist
 
 ---
 
@@ -35,7 +35,7 @@
 
 Supply-Link is an open-source, blockchain-based supply chain tracker that enables transparent, tamper-proof tracking of products from origin to consumer. It solves the trust and verification crisis in global supply chains by anchoring every product event immutably on the Stellar blockchain.
 
-**Contract Address (Testnet):** `CBUWSKT2UGOAXK4ZREVDJV5XHSYB42PZ3CERU2ZFUTUMAZLJEHNZIECA` *(placeholder — not yet deployed)*
+**Contract Address (Testnet):** `CBUWSKT2UGOAXK4ZREVDJV5XHSYB42PZ3CERU2ZFUTUMAZLJEHNZIECA` _(placeholder — not yet deployed)_
 
 ---
 
@@ -43,12 +43,12 @@ Supply-Link is an open-source, blockchain-based supply chain tracker that enable
 
 Modern supply chains suffer from deep trust failures:
 
-| Issue | Impact |
-|---|---|
-| Counterfeit goods | $4.5 trillion lost annually |
-| Supply chain fraud | $40+ billion lost annually |
-| Counterfeit medications | 250,000+ deaths per year |
-| Consumer distrust | 73% don't trust sustainability claims |
+| Issue                   | Impact                                |
+| ----------------------- | ------------------------------------- |
+| Counterfeit goods       | $4.5 trillion lost annually           |
+| Supply chain fraud      | $40+ billion lost annually            |
+| Counterfeit medications | 250,000+ deaths per year              |
+| Consumer distrust       | 73% don't trust sustainability claims |
 
 Paper trails are forged. Databases are siloed. No single source of truth exists across supply chain participants.
 
@@ -78,17 +78,17 @@ Supply-Link/
 
 ### Technology Stack
 
-| Layer | Technology |
-|---|---|
-| Smart Contracts | Rust + Soroban SDK 22 |
-| Blockchain | Stellar (Testnet / Mainnet) |
-| Frontend | Next.js 16, React 19, TypeScript |
-| Styling | Tailwind CSS v4 |
-| Wallet | Freighter (`@stellar/freighter-api`) |
-| State | Zustand |
-| Forms | React Hook Form + Zod |
-| Charts | Recharts |
-| QR | `qrcode` + `html5-qrcode` |
+| Layer           | Technology                           |
+| --------------- | ------------------------------------ |
+| Smart Contracts | Rust + Soroban SDK 22                |
+| Blockchain      | Stellar (Testnet / Mainnet)          |
+| Frontend        | Next.js 16, React 19, TypeScript     |
+| Styling         | Tailwind CSS v4                      |
+| Wallet          | Freighter (`@stellar/freighter-api`) |
+| State           | Zustand                              |
+| Forms           | React Hook Form + Zod                |
+| Charts          | Recharts                             |
+| QR              | `qrcode` + `html5-qrcode`            |
 
 ### Data Flow
 
@@ -282,12 +282,12 @@ npm run lint
 
 ## Why Stellar / Soroban?
 
-| Feature | Stellar | Ethereum | Bitcoin |
-|---|---|---|---|
-| Finality | ~5 seconds | Minutes | Hours |
-| Tx cost | ~$0.00001 | $10–100 | High |
-| Energy | Efficient PoA | PoS | PoW |
-| Cross-border | Native | Limited | Limited |
+| Feature      | Stellar       | Ethereum | Bitcoin |
+| ------------ | ------------- | -------- | ------- |
+| Finality     | ~5 seconds    | Minutes  | Hours   |
+| Tx cost      | ~$0.00001     | $10–100  | High    |
+| Energy       | Efficient PoA | PoS      | PoW     |
+| Cross-border | Native        | Limited  | Limited |
 
 Stellar's speed and near-zero cost make it ideal for supply chain use cases where thousands of events are recorded per day across global participants.
 
@@ -305,13 +305,13 @@ Stellar's speed and near-zero cost make it ideal for supply chain use cases wher
 
 ## Roadmap
 
-| Phase | Status | Scope |
-|---|---|---|
-| Phase 1 – MVP | 🔄 In Progress | Product registration, event tracking, wallet integration, QR codes |
-| Phase 2 – Security | 📅 Q2 2026 | Access control, security audit, E2E tests |
-| Phase 3 – UX | 📅 Q3 2026 | Timeline visualization, analytics dashboard, mobile |
-| Phase 4 – Integrations | 📅 Q3 2026 | REST API, webhooks, SDK |
-| Phase 5 – Scale | 📅 Q4 2026 | Multi-language, enterprise features, mainnet launch |
+| Phase                  | Status         | Scope                                                              |
+| ---------------------- | -------------- | ------------------------------------------------------------------ |
+| Phase 1 – MVP          | 🔄 In Progress | Product registration, event tracking, wallet integration, QR codes |
+| Phase 2 – Security     | 📅 Q2 2026     | Access control, security audit, E2E tests                          |
+| Phase 3 – UX           | 📅 Q3 2026     | Timeline visualization, analytics dashboard, mobile                |
+| Phase 4 – Integrations | 📅 Q3 2026     | REST API, webhooks, SDK                                            |
+| Phase 5 – Scale        | 📅 Q4 2026     | Multi-language, enterprise features, mainnet launch                |
 
 ---
 
@@ -336,4 +336,4 @@ MIT — free to use, modify, and distribute.
 
 ---
 
-*Built with ❤️ on [Stellar](https://stellar.org) & [Soroban](https://soroban.stellar.org)*
+_Built with ❤️ on [Stellar](https://stellar.org) & [Soroban](https://soroban.stellar.org)_

@@ -6,18 +6,18 @@ This document describes the end-to-end resilience suite added in [issue #338](ht
 
 ## Test Categories
 
-| Category | Tests | Description |
-|---|---|---|
-| Payload limits | 10 | Boundary acceptance and over-limit rejection for `id`, `name`, `origin`, `location`, `metadata` |
-| Unauthorized access | 2 | Stranger blocked from `add_tracking_event`; non-owner blocked from `reject_event` |
-| Duplicate registration | 1 | Same `id` registered twice panics |
-| Empty / ghost queries | 6 | Safe defaults for all read functions on unknown product IDs |
-| Nonce replay | 2 | Consumed nonce and future nonce both rejected |
-| Multi-sig quorum | 4 | Single approval stays pending; second approval finalizes; duplicate approver deduplication; reject clears queue |
-| Governance safeguard | 1 | Removing actor below `required_signatures` threshold is blocked |
-| Full lifecycle | 1 | Register → add actor → pending event → dual approve → transfer ownership |
-| Event count | 1 | Counter increments correctly across sequential events |
-| Pagination | 1 | `list_products` returns correct slices at boundaries |
+| Category               | Tests | Description                                                                                                     |
+| ---------------------- | ----- | --------------------------------------------------------------------------------------------------------------- |
+| Payload limits         | 10    | Boundary acceptance and over-limit rejection for `id`, `name`, `origin`, `location`, `metadata`                 |
+| Unauthorized access    | 2     | Stranger blocked from `add_tracking_event`; non-owner blocked from `reject_event`                               |
+| Duplicate registration | 1     | Same `id` registered twice panics                                                                               |
+| Empty / ghost queries  | 6     | Safe defaults for all read functions on unknown product IDs                                                     |
+| Nonce replay           | 2     | Consumed nonce and future nonce both rejected                                                                   |
+| Multi-sig quorum       | 4     | Single approval stays pending; second approval finalizes; duplicate approver deduplication; reject clears queue |
+| Governance safeguard   | 1     | Removing actor below `required_signatures` threshold is blocked                                                 |
+| Full lifecycle         | 1     | Register → add actor → pending event → dual approve → transfer ownership                                        |
+| Event count            | 1     | Counter increments correctly across sequential events                                                           |
+| Pagination             | 1     | `list_products` returns correct slices at boundaries                                                            |
 
 ## Running Locally
 
@@ -28,7 +28,7 @@ cargo test resilience_tests
 
 ## CI Integration
 
-The `resilience` job in `.github/workflows/contract.yml` runs `cargo test resilience_tests` on every push and pull request targeting `main`.
+Run `cargo test resilience_tests` locally before merging contract changes that affect failure handling, retries, or lifecycle recovery.
 
 ## Known Limitations
 
